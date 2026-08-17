@@ -1,0 +1,133 @@
+/* ==========================================================================
+   PAGE-SPECIFIC STYLES — multi-page MERN build
+   ========================================================================== */
+
+/* ---------- Section head shared ---------- */
+.section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; margin-bottom: 54px; }
+.section-head.center { flex-direction: column; align-items: center; text-align: center; }
+.section-head.center .section-sub { margin-top: 18px; }
+.section-head .section-sub { margin-bottom: 6px; }
+
+/* ==========================================================================
+   PAGE HERO (interior pages)
+   ========================================================================== */
+.page-hero {
+  position: relative; min-height: 56svh; display: flex; align-items: flex-end;
+  background-size: cover; background-position: center; overflow: hidden;
+  padding: 140px 0 70px;
+}
+.page-hero-veil {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(12,13,14,.62) 0%, rgba(12,13,14,.42) 45%, rgba(12,13,14,.86) 100%),
+              linear-gradient(90deg, rgba(12,13,14,.55) 0%, rgba(12,13,14,.15) 60%, rgba(12,13,14,.4) 100%);
+}
+.page-hero-content { position: relative; z-index: 2; }
+.crumb { display: flex; align-items: center; gap: 10px; font-size: 13px; letter-spacing: .08em; color: var(--muted); margin-bottom: 22px; }
+.crumb a { color: var(--gold); transition: color .3s; }
+.crumb a:hover { color: var(--gold-bright); }
+.page-hero-title {
+  font-size: clamp(40px, 6.5vw, 84px); font-weight: 800; letter-spacing: -0.03em;
+  text-transform: uppercase; line-height: 1.02; max-width: 900px;
+}
+.page-hero-title em { font-style: normal; color: var(--gold); }
+.page-hero-sub { max-width: 640px; margin-top: 26px; color: var(--sand); font-size: clamp(16px, 1.5vw, 18px); }
+.page-hero .hero-ctas { margin-top: 38px; }
+
+/* ==========================================================================
+   SERVICE PAGES
+   ========================================================================== */
+.service-page-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(40px, 6vw, 90px); align-items: start; }
+.service-page-copy .section-title { margin-bottom: 26px; }
+.service-page-copy > p { color: var(--muted); margin-bottom: 20px; }
+.service-page-copy .section-head { display: block; }
+.service-list.static { margin-top: 26px; display: grid; gap: 12px; }
+.service-list.static li { display: flex; align-items: center; gap: 12px; color: var(--sand); font-size: 15px; }
+.service-list.static li::before { content: '✓'; color: var(--gold); font-weight: 800; }
+.service-page-media { position: sticky; top: 110px; }
+.service-page-media img { width: 100%; border-radius: 14px; }
+.service-page-quote {
+  margin-top: 22px; padding: 26px 28px; background: var(--charcoal); border-left: 3px solid var(--gold);
+  border-radius: 0 12px 12px 0;
+}
+.service-page-quote p { font-family: var(--font-display); font-size: 17px; font-weight: 600; color: var(--warm-white); line-height: 1.4; }
+.service-page-quote span { display: block; margin-top: 12px; color: var(--gold); font-size: 13px; letter-spacing: .06em; }
+
+.feature-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+.feature-box { padding: 34px 28px; background: var(--charcoal-2); border: 1px solid var(--line); border-radius: 12px; transition: border-color .4s, transform .4s var(--ease-cinematic); }
+.feature-box:hover { border-color: rgba(201,161,59,.55); transform: translateY(-6px); }
+.feature-num { font-family: var(--font-display); font-size: 13px; letter-spacing: .2em; color: var(--gold); }
+.feature-box h3 { font-size: 19px; margin: 14px 0 10px; }
+.feature-box p { color: var(--muted); font-size: 14px; }
+
+/* Commercial systems */
+.system-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.system-card { padding: 32px 28px; background: var(--charcoal-2); border: 1px solid var(--line); border-radius: 12px; transition: border-color .4s, transform .4s var(--ease-cinematic); }
+.system-card:hover { border-color: rgba(201,161,59,.55); transform: translateY(-6px); }
+.system-card h3 { font-size: 19px; margin-bottom: 12px; color: var(--gold); }
+.system-card p { color: var(--muted); font-size: 14.5px; }
+
+/* Designer systems */
+.designer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.designer-card { background: var(--charcoal-2); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; transition: border-color .4s, transform .4s var(--ease-cinematic); }
+.designer-card:hover { border-color: rgba(201,161,59,.55); transform: translateY(-6px); }
+.designer-card-img { overflow: hidden; aspect-ratio: 4/3; }
+.designer-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease-cinematic); }
+.designer-card:hover .designer-card-img img { transform: scale(1.07); }
+.designer-card-body { padding: 24px 26px; }
+.designer-card-body h3 { font-size: 19px; margin-bottom: 10px; }
+.designer-card-body p { color: var(--muted); font-size: 14px; }
+
+/* Storm page steps */
+.step-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 40px; }
+.step-item { padding: 34px 28px; background: var(--warm-white); border-radius: 12px; border: 1px solid var(--line-dark); }
+.step-item:hover { box-shadow: 0 18px 40px rgba(12,13,14,.08); }
+.step-num { font-family: var(--font-display); font-size: 13px; letter-spacing: .2em; color: var(--gold); font-weight: 700; }
+.step-item h3 { font-size: 18px; margin: 12px 0 8px; color: var(--ink); }
+.step-item p { color: #55575b; font-size: 14px; }
+
+/* ==========================================================================
+   LOCATIONS PAGE
+   ========================================================================== */
+.office-list { margin-top: 60px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.office-card { padding: 24px 26px; background: var(--charcoal-2); border: 1px solid var(--line); border-radius: 12px; transition: border-color .3s, transform .3s var(--ease-cinematic); }
+.office-card:hover { border-color: rgba(201,161,59,.5); transform: translateY(-4px); }
+.office-card h3 { font-size: 17px; margin-bottom: 6px; }
+.office-region { color: var(--gold); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 10px; }
+.office-card p { color: var(--muted); font-size: 13.5px; margin-top: 4px; }
+.office-card a { color: var(--gold); }
+.office-note { color: var(--muted-2); font-style: italic; }
+
+/* ==========================================================================
+   CONTACT PAGE
+   ========================================================================== */
+.contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.contact-card { padding: 36px 32px; background: var(--charcoal-2); border: 1px solid var(--line); border-radius: 14px; }
+.contact-card h3 { font-size: 18px; margin-bottom: 18px; color: var(--gold); }
+.contact-card p { color: var(--muted); font-size: 14.5px; margin-bottom: 10px; }
+.contact-card a { color: var(--gold); }
+
+/* Form error state */
+.form-error { margin-top: 18px; padding: 14px 18px; background: rgba(210, 84, 77, 0.12); border: 1px solid rgba(210, 84, 77, 0.5); border-radius: 8px; color: #e08a84; font-size: 14px; }
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .feature-grid { grid-template-columns: repeat(2, 1fr); }
+  .system-grid { grid-template-columns: repeat(2, 1fr); }
+  .designer-grid { grid-template-columns: repeat(2, 1fr); }
+  .office-list { grid-template-columns: repeat(2, 1fr); }
+  .contact-grid { grid-template-columns: 1fr; }
+  .step-row { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 700px) {
+  .page-hero { min-height: 50svh; padding: 120px 0 60px; }
+  .service-page-grid { grid-template-columns: 1fr; }
+  .service-page-media { position: static; }
+  .feature-grid { grid-template-columns: 1fr; }
+  .system-grid { grid-template-columns: 1fr; }
+  .designer-grid { grid-template-columns: 1fr; }
+  .office-list { grid-template-columns: 1fr; }
+  .step-row { grid-template-columns: 1fr; }
+  .section-head { flex-direction: column; align-items: flex-start; }
+}

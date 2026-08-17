@@ -1,0 +1,17 @@
+{
+  "name": "priority-roofing-dallas",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Priority Roofing Dallas — 2026 premium multi-page MERN experience",
+  "scripts": {
+    "dev": "concurrently -n server,client -c yellow,cyan \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+    "server": "npm run dev --prefix server",
+    "client": "npm run dev --prefix client",
+    "seed": "npm run seed --prefix server",
+    "build": "npm run build --prefix client",
+    "start": "npm run start --prefix server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}
