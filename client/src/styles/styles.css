@@ -391,6 +391,15 @@ body.cursor-grow .cursor-ring { width: 62px; height: 62px; border-color: var(--g
   flex: 0 0 auto; width: 44px; height: 44px; border-radius: 50%; background: var(--gold); color: var(--ink);
   display: grid; place-items: center; font-size: 22px; font-weight: 800;
 }
+/* Full success state — replaces the form entirely */
+.form-success.form-success-full {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; margin-top: 0; padding: clamp(48px, 7vw, 84px) 30px; gap: 20px;
+}
+.form-success.form-success-full .success-check { width: 68px; height: 68px; font-size: 32px; box-shadow: 0 0 0 10px rgba(201, 161, 59, 0.12); }
+.form-success.form-success-full p { font-size: 17px; max-width: 440px; line-height: 1.7; }
+.form-success.form-success-full .form-success-sub { color: var(--muted); font-size: 14px; }
+.form-success.form-success-full .form-success-sub a { color: var(--gold); font-weight: 600; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
 /* ==========================================================================
