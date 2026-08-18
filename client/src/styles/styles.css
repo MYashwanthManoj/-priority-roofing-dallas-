@@ -250,7 +250,7 @@ body.cursor-grow .cursor-ring { width: 62px; height: 62px; border-color: var(--g
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
 }
 .hero-content { position: relative; z-index: 2; padding-top: 40px; }
-@media (max-height: 700px) {
+@media (max-height: 820px) {
   .hero-content { padding-top: 110px; }
 }
 .hero-eyebrow {
