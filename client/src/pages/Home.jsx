@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Reveal from '../components/Reveal';
 import MagneticButton from '../components/MagneticButton';
@@ -29,6 +29,8 @@ export default function Home() {
 
   // Hero image crossfade: continuous cinematic loop between the two frames
   const [heroSwap, setHeroSwap] = useState(false);
+  const heroRef = useRef(null);
+
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduced) return;
@@ -39,10 +41,40 @@ export default function Home() {
     return () => { clearTimeout(t1); clearInterval(t2); };
   }, []);
 
+  // Hero parallax: background moves slower than foreground for cinematic depth
+  useEffect(() => {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) return;
+    const hero = heroRef.current;
+    if (!hero) return;
+    const imgs = hero.querySelectorAll('.hero-img, .hero-img-2');
+    const sun = hero.querySelector('.hero-sun');
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
+        const heroH = hero.offsetHeight;
+        if (scrollY > heroH) { ticking = false; return; }
+        const progress = scrollY / heroH;
+        // Images move at 40% of scroll speed (parallax)
+        const imgOffset = scrollY * 0.4;
+        // Sun moves at 20% (farther = slower)
+        const sunOffset = scrollY * 0.2;
+        imgs.forEach((img) => { img.style.transform = `translateY(${imgOffset}px) scale(${1 + progress * 0.02})`; });
+        if (sun) sun.style.transform = `translateY(${sunOffset}px)`;
+        ticking = false;
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
     <>
       {/* ============ HERO ============ */}
-      <section className="hero" id="hero">
+      <section className="hero" id="hero" ref={heroRef}>
         <div className="hero-media" aria-hidden="true">
           <div className="hero-img" style={{ backgroundImage: "url('/assets/img/hero-house.webp')" }} />
           <div className={`hero-img hero-img-2${heroSwap ? ' show' : ''}`} style={{ backgroundImage: "url('/assets/img/proj-home-commercial.webp')" }} />
