@@ -13,19 +13,30 @@ import MaterialsTabs from '../components/MaterialsTabs';
 import { usePageMeta } from '../hooks/usePageMeta';
 import { business, services } from '../data/content';
 
+const TRUST_CERTS = [
+  'GAF Master Elite',
+  'Owens Corning Preferred',
+  'NRCA Member',
+  'UASRC Certified',
+  'OSHA Safety Trained',
+];
+
 export default function Home() {
   usePageMeta(
     'Priority Roofing Dallas — Roof Repair & Replacement Contractor | North Texas Roofing',
     'Priority Roofing Dallas is your trusted local roofing contractor — residential, commercial & designer roof repair, replacement and installation built for North Texas weather. Free inspections, insurance claim assistance & 24–48 hour storm response. Call 469-615-8193.'
   );
 
-  // Hero image crossfade: reveal the second frame after the intro settles
+  // Hero image crossfade: continuous cinematic loop between the two frames
   const [heroSwap, setHeroSwap] = useState(false);
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduced) return;
-    const t = setTimeout(() => setHeroSwap(true), 3400);
-    return () => clearTimeout(t);
+    // First crossfade after intro settles
+    const t1 = setTimeout(() => setHeroSwap(true), 3400);
+    // Continuous cycling every 7 seconds
+    const t2 = setInterval(() => setHeroSwap((prev) => !prev), 7000);
+    return () => { clearTimeout(t1); clearInterval(t2); };
   }, []);
 
   return (
@@ -75,6 +86,18 @@ export default function Home() {
 
       <Ticker />
 
+      {/* ============ TRUST BADGES ============ */}
+      <section className="trust-strip" aria-label="Certifications and affiliations">
+        <div className="container trust-badges">
+          {TRUST_CERTS.map((cert) => (
+            <div className="trust-badge reveal" key={cert}>
+              <span className="badge-diamond" aria-hidden="true">◆</span>
+              <span>{cert}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* ============ INTRO ============ */}
       <section className="intro section" id="intro">
         <div className="container">
@@ -98,8 +121,8 @@ export default function Home() {
                 <li className="reveal">Free, no-obligation inspections</li>
               </ul>
               <div className="intro-sign reveal">
-                <p className="quote-mark" aria-hidden="true">“</p>
-                <p><em>“We don't just build roofs — we build relationships. Taking care of our families hinges upon our taking care of yours.”</em></p>
+                <p className="quote-mark" aria-hidden="true">"</p>
+                <p><em>"We don't just build roofs — we build relationships. Taking care of our families hinges upon our taking care of yours."</em></p>
                 <p className="sign-name">Elias Rodriguez — Managing Partner, Dallas</p>
               </div>
             </div>

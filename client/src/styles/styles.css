@@ -203,6 +203,19 @@ body.cursor-grow .cursor-ring { width: 62px; height: 62px; border-color: var(--g
 }
 
 /* ==========================================================================
+   TRUST BADGE STRIP
+   ========================================================================== */
+.trust-strip { background: var(--charcoal); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 18px 0; }
+.trust-badges { display: flex; justify-content: center; align-items: center; gap: clamp(14px, 3vw, 32px); flex-wrap: wrap; }
+.trust-badge { display: flex; align-items: center; gap: 8px; padding: 6px 14px; border: 1px solid var(--line); border-radius: 6px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 600; white-space: nowrap; transition: border-color .3s, color .3s; }
+.trust-badge:hover { border-color: var(--gold); color: var(--gold); }
+.badge-diamond { color: var(--gold); font-size: 10px; }
+@media (max-width: 640px) {
+  .trust-badges { gap: 8px; }
+  .trust-badge { font-size: 9.5px; padding: 5px 10px; letter-spacing: .08em; }
+}
+
+/* ==========================================================================
    SECTIONS
    ========================================================================== */
 .section { position: relative; padding: clamp(40px, 4.5vw, 64px) 0; }
@@ -232,7 +245,8 @@ body.cursor-grow .cursor-ring { width: 62px; height: 62px; border-color: var(--g
   animation: heroZoom 14s var(--ease-cinematic) forwards;
 }
 .hero-img-2 { opacity: 0; }
-.hero-img-2.show { opacity: 1; transition: opacity 1.4s ease; }
+.hero-img-2.show { opacity: 1; transition: opacity 2s ease-in-out; }
+.hero-img-2 { transition: opacity 2s ease-in-out; }
 @keyframes heroZoom { from { transform: scale(1.18); } to { transform: scale(1); } }
 .hero-veil {
   position: absolute; inset: 0;
@@ -784,8 +798,13 @@ body.cursor-grow .cursor-ring { width: 62px; height: 62px; border-color: var(--g
   .intro-left { position: static; }
   .mat-panel { grid-template-columns: 1fr; }
   .mat-panel-img { order: -1; }
-  .storm-stages { gap: 18px; }
-  .stage { min-width: 42%; }
+  .storm-stages { gap: 10px; justify-content: center; }
+  .stage { min-width: 40%; padding: 14px 8px; }
+  .stage-icon { width: 52px; height: 52px; margin-bottom: 10px; }
+  .stage-icon svg { width: 24px; height: 24px; }
+  .stage h3 { font-size: 12px; letter-spacing: .1em; margin-bottom: 6px; }
+  .stage p { font-size: 11.5px; }
+  .stage-arrow { font-size: 16px; margin: 4px 0; }
   .stage-arrow { transform: rotate(90deg); }
   .areas-head, .services-head, .materials-head, .why-head, .reviews-head, .team-head, .gallery-head, .locations-head { flex-direction: column; align-items: flex-start; gap: 20px; }
   .area-map { grid-template-columns: 1fr; }
@@ -800,16 +819,32 @@ body.cursor-grow .cursor-ring { width: 62px; height: 62px; border-color: var(--g
 }
 @media (max-width: 640px) {
   body { font-size: 15.5px; }
-  .section { padding: 64px 0; }
+  .section { padding: 32px 0; }
+  .section-dark { padding: 32px 0; }
   .service-cards, .promise-grid, .warranty-grid, .team-grid, .form-grid { grid-template-columns: 1fr; }
+  .service-card-media { aspect-ratio: 16/7; }
+  .service-card-body { padding: 20px 18px 22px; }
+  .service-card-body h3 { font-size: 20px; margin-bottom: 10px; }
+  .service-card-body > p { font-size: 13px; margin-bottom: 14px; }
+  .storm-callout { gap: 18px; padding: 24px 18px; }
+  .storm-callout-item .big { font-size: 28px; }
+  .storm-callout-item p:last-child { font-size: 12px; }
   .form-foot { flex-direction: column; align-items: stretch; text-align: center; }
   .hero-ctas { flex-direction: column; }
   .hero-ctas .btn { width: 100%; }
   .hero-trust { flex-direction: column; align-items: flex-start; gap: 8px; }
   .g-item { width: 82vw; height: 440px; }
   .g-item.g-wide { width: 88vw; }
-  .storm-callout { padding: 30px 24px; gap: 26px; }
+  .storm-callout { padding: 24px 18px; gap: 18px; }
   .storm-callout .storm-cta { width: 100%; }
+  .process-list li { padding: 12px 0; gap: 12px; }
+  .process-list li .p-num { font-size: 12px; }
+  .process-list h4 { font-size: 14.5px; }
+  .process-list p { font-size: 12.5px; }
+  .why-process h3 { font-size: 22px; margin-bottom: 8px; }
+  .why-process-intro { font-size: 13px; margin-bottom: 18px; }
+  .cred p { font-size: 13.5px; }
+  .cred { gap: 10px; padding: 10px 12px; }
   .area-list { grid-template-columns: 1fr 1fr; }
   .footer-grid { grid-template-columns: 1fr; gap: 36px; }
   .footer-bottom { flex-direction: column; }
