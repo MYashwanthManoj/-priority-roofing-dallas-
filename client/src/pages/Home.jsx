@@ -27,21 +27,19 @@ export default function Home() {
     'Priority Roofing Dallas is your trusted local roofing contractor — residential, commercial & designer roof repair, replacement and installation built for North Texas weather. Free inspections, insurance claim assistance & 24–48 hour storm response. Call 469-615-8193.'
   );
 
-  // Hero image crossfade: continuous cinematic loop between the two frames
+  // Hero image crossfade: continuous cinematic loop
   const [heroSwap, setHeroSwap] = useState(false);
   const heroRef = useRef(null);
 
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduced) return;
-    // First crossfade after intro settles
     const t1 = setTimeout(() => setHeroSwap(true), 3400);
-    // Continuous cycling every 7 seconds
     const t2 = setInterval(() => setHeroSwap((prev) => !prev), 7000);
     return () => { clearTimeout(t1); clearInterval(t2); };
   }, []);
 
-  // Hero parallax: background moves slower than foreground for cinematic depth
+  // Hero parallax
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduced) return;
@@ -58,9 +56,7 @@ export default function Home() {
         const heroH = hero.offsetHeight;
         if (scrollY > heroH) { ticking = false; return; }
         const progress = scrollY / heroH;
-        // Images move at 40% of scroll speed (parallax)
         const imgOffset = scrollY * 0.4;
-        // Sun moves at 20% (farther = slower)
         const sunOffset = scrollY * 0.2;
         imgs.forEach((img) => { img.style.transform = `translateY(${imgOffset}px) scale(${1 + progress * 0.02})`; });
         if (sun) sun.style.transform = `translateY(${sunOffset}px)`;
@@ -84,23 +80,49 @@ export default function Home() {
         </div>
 
         <div className="hero-content container">
+          {/* Trust bar — top of hero, instant credibility */}
+          <div className="hero-trust-bar reveal-hero" data-rh="0">
+            <span className="htb-item">
+              <span className="htb-stars" aria-hidden="true">★★★★★</span>
+              <strong>5.0</strong>
+            </span>
+            <span className="htb-divider" aria-hidden="true" />
+            <span className="htb-item"><strong>746+</strong> Reviews</span>
+            <span className="htb-divider" aria-hidden="true" />
+            <span className="htb-item htb-badge">Licensed &amp; Insured</span>
+            <span className="htb-divider" aria-hidden="true" />
+            <span className="htb-item htb-badge">FREE Inspection</span>
+          </div>
+
           <p className="hero-eyebrow reveal-hero" data-rh="1"><span className="line" />DALLAS, TEXAS · ROOF REPAIR &amp; REPLACEMENT</p>
           <h1 className="hero-title">
             <span className="line-mask"><span data-rh="2">YOUR ROOF.</span></span>
             <span className="line-mask"><span data-rh="3" className="outline">OUR PRIORITY.</span></span>
           </h1>
           <p className="hero-sub reveal-hero" data-rh="4">Professional roof repair &amp; replacement for residential, commercial &amp; designer roofing — engineered for North Texas weather, from scorching summers to hailstorms and tornadoes.</p>
-          <div className="hero-ctas reveal-hero" data-rh="5">
-            <MagneticButton to="/contact#inspection" className="btn btn-gold btn-lg magnetic" arrow>
+
+          {/* CTA area — big, unmissable */}
+          <div className="hero-cta-area reveal-hero" data-rh="5">
+            <MagneticButton to="/contact#inspection" className="btn btn-gold btn-xl magnetic hero-cta-primary" arrow>
               Schedule a Free Inspection
             </MagneticButton>
-            <MagneticButton href={business.phoneHref} className="btn btn-ghost btn-lg magnetic">
+            <MagneticButton href={business.phoneHref} className="btn btn-ghost btn-lg magnetic hero-cta-secondary">
               Call {business.phone}
             </MagneticButton>
           </div>
-          <div className="hero-trust reveal-hero" data-rh="6">
-            <div className="stars" aria-hidden="true">★★★★★</div>
-            <p><strong>5.0 Rating</strong> from <strong>746 Reviews</strong> <span className="posted">— Posted on Google</span></p>
+
+          {/* Urgency + social proof */}
+          <div className="hero-urgency reveal-hero" data-rh="6">
+            <span className="urgency-dot" aria-hidden="true" />
+            <span>Limited spots available — <strong>book your free inspection today</strong></span>
+          </div>
+
+          <div className="hero-social-proof reveal-hero" data-rh="7">
+            <div className="sp-avatar" aria-hidden="true">JR</div>
+            <div className="sp-text">
+              <p>"Priority Roofing handled our entire claim from start to finish. Couldn't be happier."</p>
+              <span>— Recent Google Review</span>
+            </div>
           </div>
         </div>
 
