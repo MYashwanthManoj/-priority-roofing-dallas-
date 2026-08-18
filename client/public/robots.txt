@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://priority-roofing-dallas.onrender.com/sitemap.xml
